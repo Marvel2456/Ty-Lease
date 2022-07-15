@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} property|rent {% endblock %}
+{% block content %}
+
+<!-- ======= Property Search Section ======= -->
+  
+{% comment %} <div class="click-closed"></div>
+<!--/ Form Search Star /-->
+<div class="box-collapse">
+  <div class="title-box-d">
+    <h3 class="title-d">Search Property</h3>
+  </div>
+  <span class="close-box-collapse right-boxed bi bi-x"></span>
+  <div class="box-collapse-wrap form">
+    <form class="form-a" method="GET" action=".">
+      <div class="row">
+        <div class="col-md-6 mb-2">
+          <div class="form-group mt-3">
+            <label class="pb-2" for="State">State</label>
+            <select class="form-control form-select form-control-a" id="Type" name="state">
+              <option selected>Choose..</option>
+              {% for states in states %}
+              <option value="{{ states }}">{{ states }}</option>
+              {% endfor %}
+            </select> 
+          </div>
+        </div>
+        <div class="col-md-6 mb-2">
+          <div class="form-group mt-3">
+            <label class="pb-2" for="city">Location</label>
+            <select class="form-control form-select form-control-a" id="city" name="location">
+              <option selected>Choose..</option>
+              {% for loc in loc %}
+              <option value="{{ loc }}">{{ loc }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 mb-2">
+          <div class="form-group mt-3">
+            <label class="pb-2" for="bedrooms">Bedrooms</label>
+            <select class="form-control form-select form-control-a" id="bedrooms" name="bedroom">
+              <option selected>Choose..</option>
+              {% for bed in bed %}
+              <option value="{{ bed }}">{{ bed }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 mb-2">
+          <div class="form-group mt-3">
+            <label class="pb-2" for="garages">Garages</label>
+            <select class="form-control form-select form-control-a" id="garages" name="garage">
+              <option selected>Choose..</option>
+              {% for garages in garages %}
+              <option value="{{ garages }}">{{ garages }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 mb-2">
+          <div class="form-group mt-3">
+            <label class="pb-2" for="bathrooms">Bathrooms</label>
+            <select class="form-control form-select form-control-a" id="bathrooms" name="bathroom">
+              <option selected>Choose..</option>
+              {% for bath in bath %}
+              <option value="{{ bath }}">{{ bath }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-b">Search Property</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div><!-- End Property Search Section --> {% endcomment %}
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Our Unique Properties</h1>
+              <span class="color-text-a">Ty-Lease Properties</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Properties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Grid ======= -->
+    <section class="property-grid grid">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="grid-option">
+              <form method="get">
+                  {% comment %} {{locFilter.form}} {% endcomment %}
+
+                <select class="form-select" aria-label="Default select example" name="location"> 
+                  <option selected>Choose..</option>
+                  {% for loc in loc %}
+                  <option value="{{ loc }}">{{ loc }}</option>
+                  {% endfor %}
+                </select>
+                <div class="col-md-12 py-2">
+                  <button type="submit" class="btn btn-b">Search Property</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {% for rents in rent_page %}
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{rents.display_image.url}}" alt="" class="img-a img-fluid" style=""">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="">{{rents.location}}</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">rent | # {{rents.price}}</span>
+                    </div>
+                    <div class="" style="color: green;">
+                      {% for socials in socials %}
+                      <b><a href="{{socials.whatsapp}}">
+                        <i class="bi bi-whatsapp">  send a message</i>
+                      </a></b>
+                      {% endfor %}
+                    </div>
+                    <a href="{% url 'rent_details' rents.id %}" class="">Click here to view
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Bedroom</h4>
+                        <span>{{rents.bedroom}}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        <span>{{rents.toilet_and_bathroom}}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Garages</h4>
+                        <span>{{rents.garage}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              <ul class="pagination justify-content-end">
+                {% if rent_page.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ rent_page.previous_page_number }}" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                {% endif %}
+                {% for i in nums %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+                </li>
+                {% endfor %}
+                {% if rent_page.has_next %}
+                <li class="page-item next">
+                  <a class="page-link" href="?page={{ rent_page.next_page_number }}">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Property Grid Single-->
+
+  </main><!-- End #main -->
+{% endblock %}

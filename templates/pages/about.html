@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} About us {% endblock %}
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Your Satisfaction Is Our Delight</h1>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  About
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= About Section ======= -->
+    <section class="section-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 position-relative">
+            <div class="about-img-box">
+              <img src="{% static 'assets/img/real1...jpg' %}" alt="" class="img-fluid">
+            </div>
+            <div class="sinse-box">
+              <h3 class="sinse-title">TY-LEASE
+                <span></span>
+                <br> Since 2002
+              </h3>
+              <p>Property & Estate Management</p>
+            </div>
+          </div>
+          <div class="col-md-12 section-t8 position-relative">
+            <div class="row">
+              <div class="col-md-12 col-lg-12 section-md-t3">
+                <div class="title-box-d">
+                  <h3 class="title-d">Get
+                    <span class="color-d">to</span> know us
+                  </h3>
+                </div>
+                <p class="color-text-a">
+                  We are a property development company whose sole aim is to provide good, conducive and quality housing at a very affordable
+                  price. We carry out surveys to study the needs of our clients in other to provide them with top quality service.
+                  With our immense growth, development and our amazing customer service, working with us is a win win!!.
+                </p>
+                <p class="color-text-a">
+                </p>
+              </div>
+            </div>
+          </div>
+          <section class="section-services section-t8">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                      <h2 class="title-a">Our Services</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                      <div class="card-box-ico">
+                        <span class="bi bi-house-door-fill"></span>
+                      </div>
+                      <div class="card-title-c align-self-center">
+                        <h2 class="title-c">Managers</h2>
+                      </div>
+                    </div>
+                    <div class="card-body-c">
+                      <p class="content-c">
+                       We manage chains of properties ranging from estates, hostels, flats and apartments for our clients,
+                       as well as maintenance of properties.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                      <div class="card-box-ico">
+                        <span class="bi bi-receipt"></span>
+                      </div>
+                      <div class="card-title-c align-self-center">
+                        <h2 class="title-c">Inspectors</h2>
+                      </div>
+                    </div>
+                    <div class="card-body-c">
+                      <p class="content-c">
+                       We carry out inspection and evaluation of properties so as to assertain it worth and returns that
+                       it will yield.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                      <div class="card-box-ico">
+                        <span class="bi bi-card-checklist"></span>
+                      </div>
+                      <div class="card-title-c align-self-center">
+                        <h2 class="title-c">Realtors</h2>
+                      </div>
+                    </div>
+                    <div class="card-body-c">
+                      <p class="content-c">
+                        We buy, sell, rent or lease properties, we also carry out development of properties,
+                        and offer investment plans and purchase of properties. 
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section><!-- End Services Section -->
+        </div>
+      </div>
+    </section>
+</main>
+
+{% endblock %}

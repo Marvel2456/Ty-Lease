@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} property|furniture {% endblock %}
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Our Unique Properties</h1>
+              <span class="color-text-a">Ty-Lease Properties</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Properties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Grid ======= -->
+    <section class="property-grid grid">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            {% comment %} <div class="grid-option">
+              <form>
+                <select class="custom-select">
+                  <option selected>All</option>
+                  <option value="1">New to Old</option>
+                  <option value="2">For Rent</option>
+                  <option value="3">For Sale</option>
+                </select>
+              </form>
+            </div> {% endcomment %}
+          </div>
+          {% for furn in furn_page %}
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{furn.display_image.url}}" alt="" class="img-a img-fluid ibiz">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      {% comment %} <a href="">{{}}</a> {% endcomment %}
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    {% comment %} <div class="price-box d-flex">
+                      <span class="price-a">price| # {{furn.price}}</span>
+                    </div> {% endcomment %}
+                    <div class="" style="color: green;">
+                      {% for socials in socials %}
+                      <b><a href="{{socials.whatsapp}}">
+                        <i class="bi bi-whatsapp">  send a message</i>
+                      </a></b>
+                      {% endfor %}
+                    </div>
+                    <a href="{% url 'furn_details' furn.id %}" class="">Click here to view
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              <ul class="pagination justify-content-end">
+                {% if furn_page.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ furn_page.previous_page_number }}" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                {% endif %}
+                {% for i in nums %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+                </li>
+                {% endfor %}
+                {% if furn_page.has_next %}
+                <li class="page-item next">
+                  <a class="page-link" href="?page={{ furn_page.next_page_number }}">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Property Grid Single-->
+
+  </main><!-- End #main -->
+{% endblock %}

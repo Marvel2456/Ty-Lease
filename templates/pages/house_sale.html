@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} property|sales {% endblock %}
+{% block content %}
+
+
+
+<!-- ======= Property Search Section ======= -->
+  
+<!-- End Property Search Section -->
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Our Unique Properties</h1>
+              <span class="color-text-a">Ty-Lease Properties</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Properties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Grid ======= -->
+    <section class="property-grid grid">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="grid-option">
+              <form method="get" action"">
+                <select class="form-select" aria-label="Default select example" name="my_location"> 
+                  <option selected>Choose..</option>
+                  {% for loc in loc %}
+                  <option value="{{ loc }}">{{ loc }}</option>
+                  {% endfor %}
+                </select>
+                <div class="col-md-12 py-2">
+                  <button type="submit" class="btn btn-b">Search Property</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {% for sales in sales_page %}
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{sales.display_image.url}}" alt="" class="img-a img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="">{{sales.location}}</a>
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">rent | # {{sales.price}}</span>
+                    </div>
+                    <div class="" style="color: green;">
+                      {% for socials in socials %}
+                      <b><a href="{{socials.whatsapp}}">
+                        <i class="bi bi-whatsapp">  send a message</i>
+                      </a></b>
+                      {% endfor %}
+                    </div>
+                    <a href="{% url 'sale_details' sales.id %}" class="">Click here to view
+                      <span class="bi bi-chevron-right"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Bedroom</h4>
+                        <span>{{sales.bedroom}}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Baths</h4>
+                        <span>{{sales.toilet_and_bathroom}}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Garages</h4>
+                        <span>{{sales.garage}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              <ul class="pagination justify-content-end">
+                {% if sales_page.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ sales_page.previous_page_number }}" tabindex="-1">
+                    <span class="bi bi-chevron-left"></span>
+                  </a>
+                </li>
+                {% endif %}
+                {% for i in nums %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+                </li>
+                {% endfor %}
+                {% if sales_page.has_next %}
+                <li class="page-item next">
+                  <a class="page-link" href="?page={{ sales_page.next_page_number }}">
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Property Grid Single-->
+
+  </main><!-- End #main -->
+{% endblock %}
